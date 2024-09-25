@@ -18,8 +18,7 @@ class ProjectLoader
 
   def self.load_all
     data = File.read("data/projects.json")
-    json = JSON.parse(data)
-    project_names = json["projects"].map { |project| project["name"] }
-    project_names.map { |project_name| RubyProject.new(project_name) }
+    json = JSON.parse(data, symbolize_names: true)
+    json[:projects].map { |options| RubyProject.new(options) }
   end
 end

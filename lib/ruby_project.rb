@@ -1,8 +1,9 @@
 class RubyProject
   attr_reader :name
 
-  def initialize(name)
-    @name = name
+  def initialize(options)
+    @exam_klasses = options[:exam_klasses]
+    @name = options[:name]
   end
 
   def clone
@@ -10,6 +11,12 @@ class RubyProject
 
     clone_command = "git clone git@github.com:artsy/#{@name}.git projects/#{@name} --quiet --depth 1"
     Kernel.system(clone_command, exception: true)
+  end
+
+  def exams
+    @exam_klasses.map do |klass|
+      Object.const_get(klass).new(self)
+    end
   end
 
   def files

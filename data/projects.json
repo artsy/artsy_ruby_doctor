@@ -1,27 +1,96 @@
 {
   "projects": [
-    { "name": "admin_metadata" },
-    { "name": "candela" },
-    { "name": "charge" },
-    { "name": "convection" },
-    { "name": "currents" },
-    { "name": "diffusion" },
-    { "name": "doppler" },
-    { "name": "exchange" },
-    { "name": "galaxy-api" },
-    { "name": "gemini" },
-    { "name": "gravity" },
-    { "name": "helix" },
-    { "name": "horizon" },
-    { "name": "impulse" },
-    { "name": "induction" },
-    { "name": "ohm" },
-    { "name": "osmosis" },
-    { "name": "pulse" },
-    { "name": "rosalind" },
-    { "name": "vibrations" },
-    { "name": "volt" },
-    { "name": "vortex" },
-    { "name": "waves" }
+    {
+      "name": "admin_metadata",
+      "exam_klasses": ["RubyExam", "RailsExam"]
+    },
+    {
+      "name": "candela",
+      "exam_klasses": ["RubyExam", "RailsExam"]
+    },
+    {
+      "name": "charge",
+      "exam_klasses": ["RubyExam", "RailsExam"]
+    },
+    {
+      "name": "convection",
+      "exam_klasses": ["RubyExam", "RailsExam"]
+    },
+    {
+      "name": "currents",
+      "exam_klasses": ["RubyExam", "RailsExam"]
+    },
+    {
+      "name": "diffusion",
+      "exam_klasses": ["RubyExam", "RailsExam"]
+    },
+    {
+      "name": "doppler",
+      "exam_klasses": ["RubyExam", "RailsExam"]
+    },
+    {
+      "name": "exchange",
+      "exam_klasses": ["RubyExam", "RailsExam"]
+    },
+    {
+      "name": "galaxy-api",
+      "exam_klasses": ["RubyExam"]
+    },
+    {
+      "name": "gemini",
+      "exam_klasses": ["RubyExam", "RailsExam"]
+    },
+    {
+      "name": "gravity",
+      "exam_klasses": ["RubyExam", "RailsExam"]
+    },
+    {
+      "name": "helix",
+      "exam_klasses": ["RubyExam", "RailsExam"]
+    },
+    {
+      "name": "horizon",
+      "exam_klasses": ["RubyExam", "RailsExam"]
+    },
+    {
+      "name": "impulse",
+      "exam_klasses": ["RubyExam", "RailsExam"]
+    },
+    {
+      "name": "induction",
+      "exam_klasses": ["RubyExam", "RailsExam"]
+    },
+    {
+      "name": "ohm",
+      "exam_klasses": ["RubyExam", "RailsExam"]
+    },
+    {
+      "name": "osmosis",
+      "exam_klasses": ["RubyExam", "RailsExam"]
+    },
+    {
+      "name": "pulse",
+      "exam_klasses": ["RubyExam", "RailsExam"]
+    },
+    {
+      "name": "rosalind",
+      "exam_klasses": ["RubyExam", "RailsExam"]
+    },
+    {
+      "name": "vibrations",
+      "exam_klasses": ["RubyExam", "RailsExam"]
+    },
+    {
+      "name": "volt",
+      "exam_klasses": ["RubyExam", "RailsExam"]
+    },
+    {
+      "name": "vortex",
+      "exam_klasses": ["RubyExam", "RailsExam"]
+    },
+    {
+      "name": "waves",
+      "exam_klasses": ["RubyExam", "RailsExam"]
+    }
   ]
 }

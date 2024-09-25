@@ -19,12 +19,7 @@ task :examine do
   projects.each do |project|
     default_output = {name: project.name}
 
-    exams = [
-      RubyExam.new(project),
-      RailsExam.new(project)
-    ]
-
-    merged_output = exams.each_with_object(default_output) do |exam, memo|
+    merged_output = project.exams.each_with_object(default_output) do |exam, memo|
       memo.merge!(exam.results)
     end
 
