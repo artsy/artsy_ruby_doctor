@@ -1,0 +1,27 @@
+{
+  "projects": [
+    { "name": "admin_metadata" },
+    { "name": "candela" },
+    { "name": "charge" },
+    { "name": "convection" },
+    { "name": "currents" },
+    { "name": "diffusion" },
+    { "name": "doppler" },
+    { "name": "exchange" },
+    { "name": "galaxy-api" },
+    { "name": "gemini" },
+    { "name": "gravity" },
+    { "name": "helix" },
+    { "name": "horizon" },
+    { "name": "impulse" },
+    { "name": "induction" },
+    { "name": "ohm" },
+    { "name": "osmosis" },
+    { "name": "pulse" },
+    { "name": "rosalind" },
+    { "name": "vibrations" },
+    { "name": "volt" },
+    { "name": "vortex" },
+    { "name": "waves" }
+  ]
+}
