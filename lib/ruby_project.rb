@@ -15,7 +15,8 @@ class RubyProject
   def files
     {
       ".ruby-version" => ruby_version,
-      ".tool-versions" => tool_versions
+      ".tool-versions" => tool_versions,
+      "Gemfile" => gemfile
     }
   end
 
@@ -29,6 +30,12 @@ class RubyProject
 
   def tool_versions
     File.read("projects/#{@name}/.tool-versions")
+  rescue
+    nil
+  end
+
+  def gemfile
+    File.read("projects/#{@name}/Gemfile")
   rescue
     nil
   end
