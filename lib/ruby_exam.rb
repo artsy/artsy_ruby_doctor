@@ -1,4 +1,4 @@
-class RubyProject
+class RubyExam
   # also look for kinetic and call out which version it is on!
   def self.from_repo(project_name)
     ruby_version = `cat projects/#{project_name}/.tool-versions | ag ruby`.strip.split(" ").last
@@ -7,7 +7,7 @@ class RubyProject
     sentry_gem = `cat projects/#{project_name}/Gemfile | ag "gem .sentry."`.split(" ")[1]&.gsub(/["']/, "")
     framework_defaults = `cat projects/#{project_name}/config/application.rb | ag "load_defaults"`.split(" ").last
     node_version = `cat projects/#{project_name}/.tool-versions | ag nodejs`.strip.split(" ").last
-    RubyProject.new(project_name, ruby_version, rails_version, framework_defaults, node_version, datadog_gem, sentry_gem)
+    RubyExam.new(project_name, ruby_version, rails_version, framework_defaults, node_version, datadog_gem, sentry_gem)
   end
 
   def initialize(name, ruby_version, rails_version, framework_defaults, node_version, datadog_gem, sentry_gem)

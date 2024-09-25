@@ -2,7 +2,7 @@ require "rspec/core/rake_task"
 require "standard/rake"
 require "json"
 require "./lib/project_loader"
-require "./lib/ruby_project"
+require "./lib/ruby_exam"
 
 desc "Clone projects for examination"
 task :load_projects do
@@ -18,12 +18,12 @@ task examine: :load_projects do
   json = JSON.parse(data)
   project_names = json["projects"].map { |project| project["name"] }
 
-  ruby_projects = project_names.map do |project_name|
-    RubyProject.from_repo(project_name)
+  ruby_exams = project_names.map do |project_name|
+    RubyExam.from_repo(project_name)
   end
 
-  ruby_projects.each do |project|
-    puts project.to_csv
+  ruby_exams.each do |exam|
+    puts exam.to_csv
   end
 end
 
