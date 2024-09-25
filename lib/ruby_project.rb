@@ -11,4 +11,18 @@ class RubyProject
     clone_command = "git clone git@github.com:artsy/#{@name}.git projects/#{@name} --quiet --depth 1"
     Kernel.system(clone_command, exception: true)
   end
+
+  def files
+    {
+      ".tool-versions" => tool_versions
+    }
+  end
+
+  private
+
+  def tool_versions
+    File.read("projects/#{@name}/.tool-versions")
+  rescue
+    nil
+  end
 end

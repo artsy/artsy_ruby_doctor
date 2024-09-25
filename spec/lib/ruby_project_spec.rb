@@ -1,4 +1,26 @@
 describe RubyProject do
+  describe "#files" do
+    context "when tool-versions file is missing" do
+      it "returns nil for that file" do
+        ruby_project = RubyProject.new("valid")
+        expect(File).to receive(:read).and_raise(StandardError)
+        expect(ruby_project.files).to eq({
+          ".tool-versions" => nil
+        })
+      end
+    end
+
+    context "when tool-versions file is found" do
+      it "returns that file's contents" do
+        ruby_project = RubyProject.new("valid")
+        expect(File).to receive(:read).and_return("ruby 3.3.5")
+        expect(ruby_project.files).to eq({
+          ".tool-versions" => "ruby 3.3.5"
+        })
+      end
+    end
+  end
+
   describe "#clone" do
     context "with a nil name" do
       it "does nothing" do

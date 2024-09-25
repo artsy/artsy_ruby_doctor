@@ -1,5 +1,6 @@
 require "rspec/core/rake_task"
 require "standard/rake"
+require "csv"
 require "json"
 require "./lib/project_loader"
 require "./lib/ruby_exam"
@@ -13,14 +14,13 @@ end
 desc "Examine projects"
 task :examine do
   projects = ProjectLoader.load_all
-  project_names = projects.map(&:name)
 
-  ruby_exams = project_names.map do |project_name|
-    RubyExam.from_repo(project_name)
+  ruby_exams = projects.map do |project|
+    RubyExam.new(project)
   end
 
   ruby_exams.each do |exam|
-    puts exam.to_csv
+    puts exam.results.values.to_csv
   end
 end
 
