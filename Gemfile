@@ -4,4 +4,5 @@ ruby file: ".tool-versions"
 
 gem "json"
 gem "rake"
+gem "rspec"
 gem "standard"
