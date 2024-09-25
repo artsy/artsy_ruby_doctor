@@ -23,9 +23,10 @@ class RubyExam
   private
 
   def ruby_version
-    tool_versions_data = @project.files[".tool-versions"]
-    return nil unless tool_versions_data
+    ruby_version_data = @project.files[".ruby-version"]&.strip
+    return ruby_version_data if ruby_version_data
 
+    tool_versions_data = @project.files[".tool-versions"] || ""
     captures = tool_versions_data.match(/ruby (.*)$/)&.captures || []
     captures.first
   end

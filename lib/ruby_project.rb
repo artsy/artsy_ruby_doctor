@@ -14,11 +14,18 @@ class RubyProject
 
   def files
     {
+      ".ruby-version" => ruby_version,
       ".tool-versions" => tool_versions
     }
   end
 
   private
+
+  def ruby_version
+    File.read("projects/#{@name}/.ruby-version")
+  rescue
+    nil
+  end
 
   def tool_versions
     File.read("projects/#{@name}/.tool-versions")
