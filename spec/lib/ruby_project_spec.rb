@@ -1,20 +1,25 @@
 describe RubyProject do
   describe "#files" do
-    context "when tool-versions file is missing" do
-      it "returns nil for that file" do
+    context "when files are missing" do
+      it "returns nil for all the files" do
         ruby_project = RubyProject.new("valid")
-        expect(File).to receive(:read).and_raise(StandardError)
+        expect(File).to receive(:read).exactly(2).times.and_raise(StandardError)
         expect(ruby_project.files).to eq({
+          ".ruby-version" => nil,
           ".tool-versions" => nil
         })
       end
     end
 
-    context "when tool-versions file is found" do
-      it "returns that file's contents" do
+    context "when files are found" do
+      it "returns the contents of those files" do
         ruby_project = RubyProject.new("valid")
-        expect(File).to receive(:read).and_return("ruby 3.3.5")
+
+        expect(File).to receive(:read).with("projects/valid/.ruby-version").and_return("3.3.5")
+        expect(File).to receive(:read).with("projects/valid/.tool-versions").and_return("ruby 3.3.5")
+
         expect(ruby_project.files).to eq({
+          ".ruby-version" => "3.3.5",
           ".tool-versions" => "ruby 3.3.5"
         })
       end
