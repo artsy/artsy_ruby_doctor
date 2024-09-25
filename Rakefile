@@ -1,3 +1,5 @@
+require "rspec/core/rake_task"
+require "standard/rake"
 require "json"
 require "./lib/project_loader"
 require "./lib/ruby_project"
@@ -24,3 +26,6 @@ task examine: :load_projects do
     puts project.to_csv
   end
 end
+
+RSpec::Core::RakeTask.new(:spec)
+task default: %i[standard spec]
