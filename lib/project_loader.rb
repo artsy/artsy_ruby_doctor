@@ -1,14 +1,25 @@
 class ProjectLoader
-  def self.load_all(project_names)
+  def self.clone_all
     system "rm -rf projects"
     system "mkdir projects"
 
-    project_names.each do |project_name|
-      system "git clone git@github.com:artsy/#{project_name}.git projects/#{project_name} --quiet --depth 1"
+    projects = ProjectLoader.load_all
+
+    projects.each do |project|
+      project.clone
       print "."
     end
 
     print "\n"
-    puts "loading complete!"
+    puts "cloning complete!"
+
+    projects
+  end
+
+  def self.load_all
+    data = File.read("data/projects.json")
+    json = JSON.parse(data)
+    project_names = json["projects"].map { |project| project["name"] }
+    project_names.map { |project_name| RubyProject.new(project_name) }
   end
 end

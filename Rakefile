@@ -3,20 +3,17 @@ require "standard/rake"
 require "json"
 require "./lib/project_loader"
 require "./lib/ruby_exam"
+require "./lib/ruby_project"
 
 desc "Clone projects for examination"
-task :load_projects do
-  data = File.read("data/projects.json")
-  json = JSON.parse(data)
-  project_names = json["projects"].map { |project| project["name"] }
-  ProjectLoader.load_all(project_names)
+task :clone_projects do
+  ProjectLoader.clone_all
 end
 
 desc "Examine projects"
-task examine: :load_projects do
-  data = File.read("data/projects.json")
-  json = JSON.parse(data)
-  project_names = json["projects"].map { |project| project["name"] }
+task :examine do
+  projects = ProjectLoader.load_all
+  project_names = projects.map(&:name)
 
   ruby_exams = project_names.map do |project_name|
     RubyExam.from_repo(project_name)
