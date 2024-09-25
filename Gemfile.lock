@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    json (2.7.2)
     rake (13.2.1)
 
 PLATFORMS
@@ -8,6 +9,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  json
   rake
 
 RUBY VERSION
