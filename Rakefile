@@ -15,12 +15,12 @@ desc "Examine projects"
 task :examine do
   projects = ProjectLoader.load_all
 
-  ruby_exams = projects.map do |project|
-    RubyExam.new(project)
-  end
-
-  ruby_exams.each do |exam|
-    puts exam.results.values.to_csv
+  projects.each do |project|
+    default_output = {name: project.name}
+    exam = RubyExam.new(project)
+    results = exam.results
+    output = default_output.merge(results).values.to_csv
+    puts output
   end
 end
 
