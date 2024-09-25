@@ -6,6 +6,9 @@ class RubyProject
   end
 
   def clone
-    system "git clone git@github.com:artsy/#{@name}.git projects/#{@name} --quiet --depth 1"
+    return unless @name
+
+    clone_command = "git clone git@github.com:artsy/#{@name}.git projects/#{@name} --quiet --depth 1"
+    Kernel.system(clone_command, exception: true)
   end
 end
