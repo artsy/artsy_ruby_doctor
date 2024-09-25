@@ -10,7 +10,7 @@ class RubyProject
     RubyProject.new(project_name, ruby_version, rails_version, framework_defaults, node_version, datadog_gem, sentry_gem)
   end
 
-  def initialize(name, ruby_version, rails_version, framework_defaults, node_version,datadog_gem, sentry_gem)
+  def initialize(name, ruby_version, rails_version, framework_defaults, node_version, datadog_gem, sentry_gem)
     @name = name
     @ruby_version = ruby_version
     @rails_version = rails_version
