@@ -1,7 +1,5 @@
 class RubyExam
-  # also look for kinetic and call out which version it is on!
   # def self.from_repo(project_name)
-  #   datadog_gem = `cat projects/#{project_name}/Gemfile | ag "gem .(ddtrace|datadog)."`.split(" ")[1]&.gsub(/["']/, "")
   #   sentry_gem = `cat projects/#{project_name}/Gemfile | ag "gem .sentry."`.split(" ")[1]&.gsub(/["']/, "")
   # end
 

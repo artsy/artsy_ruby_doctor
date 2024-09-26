@@ -5,6 +5,7 @@ class RailsExam
 
   def results
     {
+      datadog_gem: datadog_gem,
       framework_defaults: framework_defaults,
       kinetic_version: kinetic_version,
       rails_version: rails_version,
@@ -13,6 +14,14 @@ class RailsExam
   end
 
   private
+
+  def datadog_gem
+    gemfile_data = @project.files["Gemfile"]
+    return unless gemfile_data
+
+    captures = gemfile_data.match(/gem .(ddtrace|datadog)./)&.captures || []
+    captures.first
+  end
 
   def framework_defaults
     config_application_data = @project.files["config/application.rb"]

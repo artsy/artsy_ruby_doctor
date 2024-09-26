@@ -19,6 +19,7 @@ task :examine do
     kinetic_version
     watt_version
     node_version
+    datadog_gem
   ]
 
   output = projects.map do |project|

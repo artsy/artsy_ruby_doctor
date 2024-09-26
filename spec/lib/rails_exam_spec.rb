@@ -1,4 +1,59 @@
 describe RailsExam do
+  describe "datadog gem result" do
+    let(:files) { {"Gemfile" => gemfile_data} }
+    let(:project) { double(:project, files: files) }
+
+    context "when the gemfile data is nil" do
+      let(:gemfile_data) { nil }
+
+      it "returns nil" do
+        exam = RailsExam.new(project)
+        datadog_gem = exam.results[:datadog_gem]
+        expect(datadog_gem).to eq nil
+      end
+    end
+
+    context "when the gemfile data is an empty string" do
+      let(:gemfile_data) { "" }
+
+      it "returns nil" do
+        exam = RailsExam.new(project)
+        datadog_gem = exam.results[:datadog_gem]
+        expect(datadog_gem).to eq nil
+      end
+    end
+
+    context "when the gemfile data has no datadog gem" do
+      let(:gemfile_data) { 'gem "gris"' }
+
+      it "returns nil" do
+        exam = RailsExam.new(project)
+        datadog_gem = exam.results[:datadog_gem]
+        expect(datadog_gem).to eq nil
+      end
+    end
+
+    context "when the gemfile data has the ddtrace gem" do
+      let(:gemfile_data) { 'gem "ddtrace"' }
+
+      it "returns ddtrace" do
+        exam = RailsExam.new(project)
+        datadog_gem = exam.results[:datadog_gem]
+        expect(datadog_gem).to eq "ddtrace"
+      end
+    end
+
+    context "when the gemfile data has the datadog gem" do
+      let(:gemfile_data) { 'gem "datadog"' }
+
+      it "returns datadog" do
+        exam = RailsExam.new(project)
+        datadog_gem = exam.results[:datadog_gem]
+        expect(datadog_gem).to eq "datadog"
+      end
+    end
+  end
+
   describe "framework defaults result" do
     let(:files) { {"config/application.rb" => config_application_data} }
     let(:project) { double(:project, files: files) }
