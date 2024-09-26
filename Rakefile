@@ -1,11 +1,6 @@
 require "rspec/core/rake_task"
 require "standard/rake"
-require "csv"
-require "json"
-require "./lib/project_loader"
-require "./lib/rails_exam"
-require "./lib/ruby_exam"
-require "./lib/ruby_project"
+require "./lib/artsy_ruby_doctor"
 
 desc "Clone projects for examination"
 task :clone_projects do
