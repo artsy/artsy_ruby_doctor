@@ -42,6 +42,16 @@ describe RailsExam do
         expect(framework_defaults).to eq "7.1"
       end
     end
+
+    context "when the config application data has framework defaults as a string" do
+      let(:config_application_data) { 'config.load_defaults "7.1"' }
+
+      it "returns that framework defaults value" do
+        exam = RailsExam.new(project)
+        framework_defaults = exam.results[:framework_defaults]
+        expect(framework_defaults).to eq "7.1"
+      end
+    end
   end
 
   describe "rails version result" do

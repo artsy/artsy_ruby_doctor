@@ -17,7 +17,7 @@ class RailsExam
     return unless config_application_data
 
     captures = config_application_data.match(/load_defaults (.*)$/)&.captures || []
-    captures.first
+    captures.first&.delete('"')
   end
 
   def rails_version
