@@ -18,18 +18,20 @@ task :examine do
     framework_defaults
   ]
 
-  puts header.to_csv
+  output = projects.map do |project|
+    default_results = {name: project.name}
 
-  projects.each do |project|
-    default_output = {name: project.name}
-
-    merged_output = project.exams.each_with_object(default_output) do |exam, memo|
+    merged_results = project.exams.each_with_object(default_results) do |exam, memo|
       memo.merge!(exam.results)
     end
 
-    output = merged_output.slice(*header)
-    puts output.values.to_csv
+    project_results = merged_results.slice(*header).values
+    project_results.to_csv
   end
+
+  output.unshift(header.to_csv)
+
+  puts output
 end
 
 RSpec::Core::RakeTask.new(:spec)
