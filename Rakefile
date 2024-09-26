@@ -11,6 +11,15 @@ desc "Examine projects"
 task :examine do
   projects = ProjectLoader.load_all
 
+  header = %i[
+    name
+    ruby_version
+    rails_version
+    framework_defaults
+  ]
+
+  puts header.to_csv
+
   projects.each do |project|
     default_output = {name: project.name}
 
@@ -18,8 +27,8 @@ task :examine do
       memo.merge!(exam.results)
     end
 
-    output = merged_output.values.to_csv
-    puts output
+    output = merged_output.slice(*header)
+    puts output.values.to_csv
   end
 end
 
