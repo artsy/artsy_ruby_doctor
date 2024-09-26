@@ -1,8 +1,4 @@
 class RubyExam
-  # def self.from_repo(project_name)
-  #   sentry_gem = `cat projects/#{project_name}/Gemfile | ag "gem .sentry."`.split(" ")[1]&.gsub(/["']/, "")
-  # end
-
   def initialize(project)
     @project = project
   end

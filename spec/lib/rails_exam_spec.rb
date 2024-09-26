@@ -218,6 +218,67 @@ describe RailsExam do
     end
   end
 
+  describe "sentry gems result" do
+    let(:files) { {"Gemfile" => gemfile_data} }
+    let(:project) { double(:project, files: files) }
+
+    context "when the gemfile data is nil" do
+      let(:gemfile_data) { nil }
+
+      it "returns nil" do
+        exam = RailsExam.new(project)
+        sentry_gems = exam.results[:sentry_gems]
+        expect(sentry_gems).to eq nil
+      end
+    end
+
+    context "when the gemfile data is an empty string" do
+      let(:gemfile_data) { nil }
+
+      it "returns nil" do
+        exam = RailsExam.new(project)
+        sentry_gems = exam.results[:sentry_gems]
+        expect(sentry_gems).to eq nil
+      end
+    end
+
+    context "when the gemfile data has no sentry gems" do
+      let(:gemfile_data) { 'gem "gris"' }
+
+      it "returns nil" do
+        exam = RailsExam.new(project)
+        sentry_gems = exam.results[:sentry_gems]
+        expect(sentry_gems).to eq nil
+      end
+    end
+
+    context "when the gemfile data has a sentry gem" do
+      let(:gemfile_data) { 'gem "sentry-ruby"' }
+
+      it "returns that sentry gem name" do
+        exam = RailsExam.new(project)
+        sentry_gems = exam.results[:sentry_gems]
+        expect(sentry_gems).to eq "sentry-ruby"
+      end
+    end
+
+    context "when the gemfile data has a few sentry gems" do
+      let(:gemfile_data) do
+        <<-EOF
+          gem "sentry-ruby"
+          gem "sentry-rails"
+          gem "sentry-sidekiq"
+        EOF
+      end
+
+      it "returns those sentry gems joined with a pipe" do
+        exam = RailsExam.new(project)
+        sentry_gems = exam.results[:sentry_gems]
+        expect(sentry_gems).to eq "sentry-ruby|sentry-rails|sentry-sidekiq"
+      end
+    end
+  end
+
   describe "watt version result" do
     let(:files) { {"Gemfile.lock" => gemfile_lock_data} }
     let(:project) { double(:project, files: files) }

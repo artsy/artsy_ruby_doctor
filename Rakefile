@@ -20,6 +20,7 @@ task :examine do
     watt_version
     node_version
     datadog_gem
+    sentry_gems
   ]
 
   output = projects.map do |project|

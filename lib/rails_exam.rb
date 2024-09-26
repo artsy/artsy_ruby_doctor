@@ -9,6 +9,7 @@ class RailsExam
       framework_defaults: framework_defaults,
       kinetic_version: kinetic_version,
       rails_version: rails_version,
+      sentry_gems: sentry_gems,
       watt_version: watt_version
     }
   end
@@ -45,6 +46,16 @@ class RailsExam
 
     captures = gemfile_data.match(/^gem .rails., .(.*)./)&.captures || []
     captures.first
+  end
+
+  def sentry_gems
+    gemfile_data = @project.files["Gemfile"]
+    return unless gemfile_data
+
+    gems = gemfile_data.lines.map { |line| line.match(/gem .(sentry-.*)./)&.captures&.first }.compact
+    return unless gems.any?
+
+    gems.join("|")
   end
 
   def watt_version
