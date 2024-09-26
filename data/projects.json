@@ -61,6 +61,10 @@
       "exam_klasses": ["RubyExam", "RailsExam", "NodeExam"]
     },
     {
+      "name": "kinetic",
+      "exam_klasses": ["RubyExam"]
+    },
+    {
       "name": "ohm",
       "exam_klasses": ["RubyExam", "RailsExam", "NodeExam"]
     },
@@ -87,6 +91,10 @@
     {
       "name": "vortex",
       "exam_klasses": ["RubyExam", "RailsExam", "NodeExam"]
+    },
+    {
+      "name": "watt",
+      "exam_klasses": ["RubyExam"]
     },
     {
       "name": "waves",
