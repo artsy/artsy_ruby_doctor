@@ -1,5 +1,6 @@
-require "./lib/ruby_project"
+require "./lib/rails_exam"
 require "./lib/ruby_exam"
+require "./lib/ruby_project"
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
