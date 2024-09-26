@@ -21,28 +21,16 @@ class RubyProject
 
   def files
     {
-      ".ruby-version" => ruby_version,
-      ".tool-versions" => tool_versions,
-      "Gemfile" => gemfile
+      ".ruby-version" => read_file(".ruby-version"),
+      ".tool-versions" => read_file(".tool-versions"),
+      "Gemfile" => read_file("Gemfile")
     }
   end
 
   private
 
-  def ruby_version
-    File.read("projects/#{@name}/.ruby-version")
-  rescue
-    nil
-  end
-
-  def tool_versions
-    File.read("projects/#{@name}/.tool-versions")
-  rescue
-    nil
-  end
-
-  def gemfile
-    File.read("projects/#{@name}/Gemfile")
+  def read_file(file_path)
+    File.read("projects/#{@name}/#{file_path}")
   rescue
     nil
   end
