@@ -4,11 +4,12 @@ describe RubyProject do
       it "returns nil for all the files" do
         options = {name: "valid"}
         ruby_project = RubyProject.new(options)
-        expect(File).to receive(:read).exactly(3).times.and_raise(StandardError)
+        expect(File).to receive(:read).exactly(4).times.and_raise(StandardError)
         expect(ruby_project.files).to eq({
           ".ruby-version" => nil,
           ".tool-versions" => nil,
-          "Gemfile" => nil
+          "Gemfile" => nil,
+          "config/application.rb" => nil
         })
       end
     end
@@ -21,11 +22,13 @@ describe RubyProject do
         expect(File).to receive(:read).with("projects/valid/.ruby-version").and_return("3.3.5")
         expect(File).to receive(:read).with("projects/valid/.tool-versions").and_return("ruby 3.3.5")
         expect(File).to receive(:read).with("projects/valid/Gemfile").and_return('gem "rails", "7.1"')
+        expect(File).to receive(:read).with("projects/valid/config/application.rb").and_return("config.load_defaults = 7.1")
 
         expect(ruby_project.files).to eq({
           ".ruby-version" => "3.3.5",
           ".tool-versions" => "ruby 3.3.5",
-          "Gemfile" => 'gem "rails", "7.1"'
+          "Gemfile" => 'gem "rails", "7.1"',
+          "config/application.rb" => "config.load_defaults = 7.1"
         })
       end
     end

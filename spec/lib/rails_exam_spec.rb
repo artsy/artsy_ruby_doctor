@@ -1,4 +1,49 @@
 describe RailsExam do
+  describe "framework defaults result" do
+    let(:files) { {"config/application.rb" => config_application_data} }
+    let(:project) { double(:project, files: files) }
+
+    context "when the config application data is nil" do
+      let(:config_application_data) { nil }
+
+      it "returns nil" do
+        exam = RailsExam.new(project)
+        framework_defaults = exam.results[:framework_defaults]
+        expect(framework_defaults).to eq nil
+      end
+    end
+
+    context "when the config application data is an emtpy string" do
+      let(:config_application_data) { "" }
+
+      it "returns nil" do
+        exam = RailsExam.new(project)
+        framework_defaults = exam.results[:framework_defaults]
+        expect(framework_defaults).to eq nil
+      end
+    end
+
+    context "when the config application data has no framework defaults" do
+      let(:config_application_data) { 'require "rails/all"' }
+
+      it "returns nil" do
+        exam = RailsExam.new(project)
+        framework_defaults = exam.results[:framework_defaults]
+        expect(framework_defaults).to eq nil
+      end
+    end
+
+    context "when the config application data has framework defaults" do
+      let(:config_application_data) { "config.load_defaults 7.1" }
+
+      it "returns that framework defaults value" do
+        exam = RailsExam.new(project)
+        framework_defaults = exam.results[:framework_defaults]
+        expect(framework_defaults).to eq "7.1"
+      end
+    end
+  end
+
   describe "rails version result" do
     let(:files) { {"Gemfile" => gemfile_data} }
     let(:project) { double(:project, files: files) }

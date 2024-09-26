@@ -23,7 +23,8 @@ class RubyProject
     {
       ".ruby-version" => read_file(".ruby-version"),
       ".tool-versions" => read_file(".tool-versions"),
-      "Gemfile" => read_file("Gemfile")
+      "Gemfile" => read_file("Gemfile"),
+      "config/application.rb" => read_file("config/application.rb")
     }
   end
 
