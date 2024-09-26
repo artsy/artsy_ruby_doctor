@@ -24,6 +24,7 @@ class RubyProject
       ".ruby-version" => read_file(".ruby-version"),
       ".tool-versions" => read_file(".tool-versions"),
       "Gemfile" => read_file("Gemfile"),
+      "Gemfile.lock" => read_file("Gemfile.lock"),
       "config/application.rb" => read_file("config/application.rb")
     }
   end

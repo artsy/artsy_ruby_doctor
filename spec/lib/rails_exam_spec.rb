@@ -54,6 +54,70 @@ describe RailsExam do
     end
   end
 
+  describe "kinetic version result" do
+    let(:files) { {"Gemfile.lock" => gemfile_lock_data} }
+    let(:project) { double(:project, files: files) }
+
+    context "when the gemfile lock data is nil" do
+      let(:gemfile_lock_data) { nil }
+
+      it "returns nil" do
+        exam = RailsExam.new(project)
+        kinetic_version = exam.results[:kinetic_version]
+        expect(kinetic_version).to eq nil
+      end
+    end
+
+    context "when the gemfile lock data is an emtpy string" do
+      let(:gemfile_lock_data) { "" }
+
+      it "returns nil" do
+        exam = RailsExam.new(project)
+        kinetic_version = exam.results[:kinetic_version]
+        expect(kinetic_version).to eq nil
+      end
+    end
+
+    context "when the gemfile lock data has no kinetic version" do
+      let(:gemfile_lock_data) { "rails (6.1.7.8)" }
+
+      it "returns nil" do
+        exam = RailsExam.new(project)
+        kinetic_version = exam.results[:kinetic_version]
+        expect(kinetic_version).to eq nil
+      end
+    end
+
+    context "when the gemfile lock data has a kinetic version" do
+      let(:gemfile_lock_data) do
+        "remote: https://github.com/artsy/kinetic.git\nrevision: 33e2d6e4d59a3629040c7de76a866d23a37b8e72"
+      end
+
+      it "returns that kinetic version" do
+        exam = RailsExam.new(project)
+        kinetic_version = exam.results[:kinetic_version]
+        expect(kinetic_version).to eq "33e2d6e"
+      end
+    end
+
+    context "when the gemfile lock data has kinetic and watt versions" do
+      let(:gemfile_lock_data) do
+        <<-EOF
+          remote: https://github.com/artsy/kinetic.git
+          revision: 33e2d6e4d59a3629040c7de76a866d23a37b8e72
+          remote: https://github.com/artsy/watt.git
+          revision: cd86646e71a4557f962b06f04513c8b1dcc29968
+        EOF
+      end
+
+      it "returns that kinetic version" do
+        exam = RailsExam.new(project)
+        kinetic_version = exam.results[:kinetic_version]
+        expect(kinetic_version).to eq "33e2d6e"
+      end
+    end
+  end
+
   describe "rails version result" do
     let(:files) { {"Gemfile" => gemfile_data} }
     let(:project) { double(:project, files: files) }

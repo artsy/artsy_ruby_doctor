@@ -6,6 +6,7 @@ class RailsExam
   def results
     {
       framework_defaults: framework_defaults,
+      kinetic_version: kinetic_version,
       rails_version: rails_version
     }
   end
@@ -18,6 +19,14 @@ class RailsExam
 
     captures = config_application_data.match(/load_defaults (.*)$/)&.captures || []
     captures.first&.delete('"')
+  end
+
+  def kinetic_version
+    gemfile_lock_data = @project.files["Gemfile.lock"]
+    return unless gemfile_lock_data
+
+    captures = gemfile_lock_data.match(/remote:.*kinetic.*\n.*revision: (.*)/)&.captures || []
+    captures.first&.slice(0, 7)
   end
 
   def rails_version
