@@ -7,7 +7,8 @@ class RailsExam
     {
       framework_defaults: framework_defaults,
       kinetic_version: kinetic_version,
-      rails_version: rails_version
+      rails_version: rails_version,
+      watt_version: watt_version
     }
   end
 
@@ -35,5 +36,13 @@ class RailsExam
 
     captures = gemfile_data.match(/^gem .rails., .(.*)./)&.captures || []
     captures.first
+  end
+
+  def watt_version
+    gemfile_lock_data = @project.files["Gemfile.lock"]
+    return unless gemfile_lock_data
+
+    captures = gemfile_lock_data.match(/remote:.*watt.*\n.*revision: (.*)/)&.captures || []
+    captures.first&.slice(0, 7)
   end
 end

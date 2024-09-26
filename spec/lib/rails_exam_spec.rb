@@ -162,4 +162,68 @@ describe RailsExam do
       end
     end
   end
+
+  describe "watt version result" do
+    let(:files) { {"Gemfile.lock" => gemfile_lock_data} }
+    let(:project) { double(:project, files: files) }
+
+    context "when the gemfile lock data is nil" do
+      let(:gemfile_lock_data) { nil }
+
+      it "returns nil" do
+        exam = RailsExam.new(project)
+        watt_version = exam.results[:watt_version]
+        expect(watt_version).to eq nil
+      end
+    end
+
+    context "when the gemfile lock data is an emtpy string" do
+      let(:gemfile_lock_data) { "" }
+
+      it "returns nil" do
+        exam = RailsExam.new(project)
+        watt_version = exam.results[:watt_version]
+        expect(watt_version).to eq nil
+      end
+    end
+
+    context "when the gemfile lock data has no watt version" do
+      let(:gemfile_lock_data) { "rails (6.1.7.8)" }
+
+      it "returns nil" do
+        exam = RailsExam.new(project)
+        watt_version = exam.results[:watt_version]
+        expect(watt_version).to eq nil
+      end
+    end
+
+    context "when the gemfile lock data has a watt version" do
+      let(:gemfile_lock_data) do
+        "remote: https://github.com/artsy/watt.git\nrevision: cd86646e71a4557f962b06f04513c8b1dcc29968"
+      end
+
+      it "returns that watt version" do
+        exam = RailsExam.new(project)
+        watt_version = exam.results[:watt_version]
+        expect(watt_version).to eq "cd86646"
+      end
+    end
+
+    context "when the gemfile lock data has kinetic and watt versions" do
+      let(:gemfile_lock_data) do
+        <<-EOF
+          remote: https://github.com/artsy/kinetic.git
+          revision: 33e2d6e4d59a3629040c7de76a866d23a37b8e72
+          remote: https://github.com/artsy/watt.git
+          revision: cd86646e71a4557f962b06f04513c8b1dcc29968
+        EOF
+      end
+
+      it "returns that watt version" do
+        exam = RailsExam.new(project)
+        watt_version = exam.results[:watt_version]
+        expect(watt_version).to eq "cd86646"
+      end
+    end
+  end
 end

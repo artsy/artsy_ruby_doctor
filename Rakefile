@@ -17,6 +17,7 @@ task :examine do
     rails_version
     framework_defaults
     kinetic_version
+    watt_version
     node_version
   ]
 
