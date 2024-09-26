@@ -16,6 +16,7 @@ task :examine do
     ruby_version
     rails_version
     framework_defaults
+    node_version
   ]
 
   output = projects.map do |project|

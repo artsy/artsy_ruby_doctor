@@ -3,8 +3,6 @@ class RubyExam
   # def self.from_repo(project_name)
   #   datadog_gem = `cat projects/#{project_name}/Gemfile | ag "gem .(ddtrace|datadog)."`.split(" ")[1]&.gsub(/["']/, "")
   #   sentry_gem = `cat projects/#{project_name}/Gemfile | ag "gem .sentry."`.split(" ")[1]&.gsub(/["']/, "")
-  #   framework_defaults = `cat projects/#{project_name}/config/application.rb | ag "load_defaults"`.split(" ").last
-  #   node_version = `cat projects/#{project_name}/.tool-versions | ag nodejs`.strip.split(" ").last
   # end
 
   def initialize(project)
