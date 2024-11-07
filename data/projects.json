@@ -9,10 +9,6 @@
       "exam_klasses": ["RubyExam", "RailsExam", "NodeExam"]
     },
     {
-      "name": "charge",
-      "exam_klasses": ["RubyExam", "RailsExam", "NodeExam"]
-    },
-    {
       "name": "convection",
       "exam_klasses": ["RubyExam", "RailsExam", "NodeExam"]
     },
