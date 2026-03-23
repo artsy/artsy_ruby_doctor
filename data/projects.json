@@ -1,10 +1,6 @@
 {
   "projects": [
     {
-      "name": "admin_metadata",
-      "exam_klasses": ["RubyExam", "RailsExam", "NodeExam"]
-    },
-    {
       "name": "candela",
       "exam_klasses": ["RubyExam", "RailsExam", "NodeExam"]
     },
