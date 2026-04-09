@@ -13,10 +13,6 @@
       "exam_klasses": ["RubyExam", "RailsExam", "NodeExam"]
     },
     {
-      "name": "currents",
-      "exam_klasses": ["RubyExam", "RailsExam", "NodeExam"]
-    },
-    {
       "name": "diffusion",
       "exam_klasses": ["RubyExam", "RailsExam", "NodeExam"]
     },
